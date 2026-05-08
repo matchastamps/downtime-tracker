@@ -1,41 +1,33 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Downtime Tracker</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 20px;
+}
 
-<body>
+h1, h2 {
+  font-size: 24px;
+}
 
-<div id="screen1">
-  <h1>Downtime Tracker</h1>
-  <button onclick="startTimer()">Start</button>
-</div>
+button {
+  width: 100%;
+  padding: 20px;
+  font-size: 20px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 10px;
+  background-color: #638B2C;
+  color: white;
+}
 
-<div id="screen2" style="display:none;">
-  <h2>Enter Details</h2>
+select {
+  width: 100%;
+  padding: 15px;
+  margin-top: 10px;
+  font-size: 16px;
+}
 
-  <label>Name:</label>
-  <select id="name">
-    <option>Claudia</option>
-    <option>John</option>
-  </select>
-
-  <label>Department:</label>
-  <select id="department">
-    <option>EHS</option>
-    <option>Maintenance</option>
-  </select>
-
-  <label>Reason:</label>
-  <select id="reason">
-    <option>Equipment Failure</option>
-    <option>Break</option>
-  </select>
-
-  <button onclick="stopTimer()">Stop</button>
-</div>
-
-<script src="app.js"></script>
-</body>
-</html>
+#screen1, #screen2 {
+  max-width: 400px;
+  margin: auto;
+}
