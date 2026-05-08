@@ -2,8 +2,9 @@
 <html>
 <head>
   <title>Downtime Tracker</title>
-  <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -14,29 +15,27 @@
 </div>
 
 <div id="screen2" style="display:none;">
-  <h2>Enter Details</h2>
 
-  <label>Name:</label>
-  <select id="name">
-    <option>Claudia</option>
-    <option>John</option>
-  </select>
+  <h2 id="timer">00:00:00</h2>
 
-  <label>Department:</label>
-  <select id="department">
-    <option>EHS</option>
-    <option>Maintenance</option>
-  </select>
+  <label>Employee ID:</label>
+  <input type="number" id="employeeID" placeholder="Enter ID" oninput="lookupEmployee()" />
+
+  <!-- 👇 Welcome message shows here -->
+  <h3 id="welcome"></h3>
 
   <label>Reason:</label>
   <select id="reason">
     <option>Equipment Failure</option>
     <option>Break</option>
+    <option>Safety Issue</option>
   </select>
 
   <button onclick="stopTimer()">Stop</button>
+
 </div>
 
 <script src="app.js"></script>
+
 </body>
 </html>
