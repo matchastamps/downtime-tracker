@@ -1,12 +1,6 @@
 let startTime;
 let timerInterval;
 
-// ✅ Employee list
-//let employeeData = {
-//  "1001": { name: "Claudia Trevino", department: "EHS", supervisor: "Chris" },
-//  "1002": { name: "John Smith", department: "Maintenance", supervisor: "Alex" }
-//};
-
 // START BUTTON
 function startTimer() {
   startTime = new Date();
@@ -34,21 +28,22 @@ function startClock() {
   }, 1000);
 }
 
-// ✅ FIXED ID LOOKUP
+// ✅ OPTIONAL: SIMPLE ID CHECK (numbers only)
 function lookupEmployee() {
-  const id = document.getElementById("employeeID").value.toString().trim();
+  const id = document.getElementById("employeeID").value.trim();
   const welcome = document.getElementById("welcome");
 
-  if (employeeData[id]) {
-    const emp = employeeData[id];
-    welcome.innerText =
-      `✅ Welcome ${emp.name} (${emp.department})\nSupervisor: ${emp.supervisor}`;
-    welcome.style.color = "green";
-  } else if (id !== "") {
-    welcome.innerText = "❌ Employee not found";
+  if (id === "") {
+    welcome.innerText = "";
+    return;
+  }
+
+  if (!/^\d+$/.test(id)) {
+    welcome.innerText = "❌ ID must be numbers only";
     welcome.style.color = "red";
   } else {
-    welcome.innerText = "";
+    welcome.innerText = `✅ ID Accepted: ${id}`;
+    welcome.style.color = "green";
   }
 }
 
@@ -57,30 +52,25 @@ function stopTimer() {
   clearInterval(timerInterval);
 
   const stopTime = new Date();
-  const id = document.getElementById("employeeID").value.toString().trim();
+  const id = document.getElementById("employeeID").value.trim();
 
-  // ✅ VALIDATION
-  if (!employeeData[id]) {
-    alert("❌ Invalid Employee ID");
+  // ✅ Only check if empty or invalid format
+  if (id === "" || !/^\d+$/.test(id)) {
+    alert("❌ Please enter a valid Employee ID (numbers only)");
     return;
   }
 
-  const emp = employeeData[id];
-
   const data = {
     employeeID: id,
-    name: emp.name,
-    department: emp.department,
-    supervisor: emp.supervisor,
     reason: document.getElementById("reason").value,
     start: startTime.toLocaleString(),
     stop: stopTime.toLocaleString(),
-    duration: ((stopTime - startTime) / 60000).toFixed(2)
+    duration: ((stopTime - startTime) / 60000).toFixed(2) // minutes
   };
 
   sendToExcel(data);
 
-  alert(`✅ Logged for ${emp.name}`);
+  alert(`✅ Logged for Employee ID: ${id}`);
 
   // RESET
   document.getElementById("screen1").style.display = "block";
@@ -101,4 +91,3 @@ function sendToExcel(data) {
   .then(response => console.log("✅ Sent to Excel"))
   .catch(error => console.error("❌ Error:", error));
 }
-``
