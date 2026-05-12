@@ -3,7 +3,6 @@
 <head>
   <title>Downtime Tracker</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -19,9 +18,13 @@
   <h2 id="timer">00:00:00</h2>
 
   <label>Employee ID:</label>
-  <input type="number" id="employeeID" placeholder="Enter ID" oninput="lookupEmployee()" />
+  <input 
+    type="number" 
+    id="employeeID" 
+    placeholder="Enter ID" 
+    oninput="lookupEmployee()" 
+  />
 
-  <!-- 👇 Welcome message shows here -->
   <h3 id="welcome"></h3>
 
   <label>Reason:</label>
