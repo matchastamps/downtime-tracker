@@ -2,10 +2,10 @@ let startTime;
 let timerInterval;
 
 // ✅ Employee list
-let employeeData = {
-  "1001": { name: "Claudia Trevino", department: "EHS", supervisor: "Chris" },
-  "1002": { name: "John Smith", department: "Maintenance", supervisor: "Alex" }
-};
+//let employeeData = {
+//  "1001": { name: "Claudia Trevino", department: "EHS", supervisor: "Chris" },
+//  "1002": { name: "John Smith", department: "Maintenance", supervisor: "Alex" }
+//};
 
 // START BUTTON
 function startTimer() {
