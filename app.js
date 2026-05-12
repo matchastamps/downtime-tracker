@@ -1,7 +1,7 @@
 let startTime;
 let timerInterval;
 
-// 👇 YOUR EMPLOYEE LIST (replace with your real data)
+// ✅ Employee list
 let employeeData = {
   "1001": { name: "Claudia Trevino", department: "EHS", supervisor: "Chris" },
   "1002": { name: "John Smith", department: "Maintenance", supervisor: "Alex" }
@@ -17,7 +17,7 @@ function startTimer() {
   startClock();
 }
 
-// LIVE TIMER
+// TIMER
 function startClock() {
   timerInterval = setInterval(() => {
     const now = new Date();
@@ -34,9 +34,9 @@ function startClock() {
   }, 1000);
 }
 
-// 👇 LOOKUP EMPLOYEE (runs as they type)
+// ✅ FIXED ID LOOKUP
 function lookupEmployee() {
-  const id = document.getElementById("employeeID").value;
+  const id = document.getElementById("employeeID").value.toString().trim();
   const welcome = document.getElementById("welcome");
 
   if (employeeData[id]) {
@@ -44,9 +44,11 @@ function lookupEmployee() {
     welcome.innerText =
       `✅ Welcome ${emp.name} (${emp.department})\nSupervisor: ${emp.supervisor}`;
     welcome.style.color = "green";
-  } else {
+  } else if (id !== "") {
     welcome.innerText = "❌ Employee not found";
     welcome.style.color = "red";
+  } else {
+    welcome.innerText = "";
   }
 }
 
@@ -55,8 +57,9 @@ function stopTimer() {
   clearInterval(timerInterval);
 
   const stopTime = new Date();
-  const id = document.getElementById("employeeID").value;
+  const id = document.getElementById("employeeID").value.toString().trim();
 
+  // ✅ VALIDATION
   if (!employeeData[id]) {
     alert("❌ Invalid Employee ID");
     return;
@@ -79,20 +82,23 @@ function stopTimer() {
 
   alert(`✅ Logged for ${emp.name}`);
 
-  // Reset UI
+  // RESET
   document.getElementById("screen1").style.display = "block";
   document.getElementById("screen2").style.display = "none";
   document.getElementById("welcome").innerText = "";
   document.getElementById("employeeID").value = "";
 }
 
-// SEND TO POWER AUTOMATE
+// ✅ SEND TO POWER AUTOMATE
 function sendToExcel(data) {
-  fetch("YOUR_POWER_AUTOMATE_URL_HERE", {
+  fetch("PASTE_YOUR_POWER_AUTOMATE_URL_HERE", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(data)
-  });
+  })
+  .then(response => console.log("✅ Sent to Excel"))
+  .catch(error => console.error("❌ Error:", error));
 }
+``
